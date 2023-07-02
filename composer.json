@@ -20,11 +20,6 @@
             "libDiscord\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "libDiscord\\": "tests/"
-        }
-    },
     "authors": [
         {
             "name": "Matthew Jordan",
