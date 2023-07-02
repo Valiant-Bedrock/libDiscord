@@ -45,21 +45,27 @@ final class DiscordPostTask extends AsyncTask {
 		$headers = igbinary_unserialize($this->headers);
 		/** @var string|null $error */
 		$error = null;
-		$data = Internet::postURL(
-			page: $this->url,
-			args: $this->payload,
-			timeout: $this->timeout,
-			extraHeaders: [
-				...$headers,
-				"Content-Type: application/json",
-			],
-			err: $error
-		);
-		if ($data instanceof InternetRequestResult) {
-			$success = $data->getCode() >= 200 && $data->getCode() < 300;
-			$this->setResult($success ? $data : new InternetException("HTTP error: {$data->getCode()}: {$data->getBody()}"));
-		} else {
-			$this->setResult(new Exception($error ?? "Unknown error"));
+		try {
+			$data = Internet::postURL(
+				page: $this->url,
+				args: $this->payload,
+				timeout: $this->timeout,
+				extraHeaders: [
+					...$headers,
+					"Content-Type: application/json",
+				],
+				err: $error
+			);
+			if ($data === null) {
+				throw new InternetException(message: $error ?? "Unknown error while sending request");
+			}
+			// if the request wasn't successful, throw an exception with the error message
+			if (!$data->getCode() >= 200 && $data->getCode() < 300) {
+				throw new InternetException(message: $data->getBody(), code: $data->getCode());
+			}
+			$this->setResult($data->getBody());
+		} catch (Exception $exception) {
+			$this->setResult($exception);
 		}
 	}
 
