@@ -48,9 +48,15 @@ class DiscordMessage implements JsonSerializable {
 	}
 
 	/**
-	 * @return array<string, mixed>
+	 * @return array{content: string, username: string, tts: bool, embeds: array<RichEmbed>, allowed_mentions: AllowedMentions}
 	 */
 	public function jsonSerialize(): array {
-		return [];
+		return [
+			"content" => $this->content,
+			"username" => $this->username,
+			"tts" => $this->tts,
+			"embeds" => $this->embeds,
+			"allowed_mentions" => $this->allowedMentions
+		];
 	}
 }

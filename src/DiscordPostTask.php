@@ -57,7 +57,7 @@ final class DiscordPostTask extends AsyncTask {
 		);
 		if ($data instanceof InternetRequestResult) {
 			$success = $data->getCode() >= 200 && $data->getCode() < 300;
-			$this->setResult($success ? $data : new InternetException("HTTP error: {$data->getCode()}"));
+			$this->setResult($success ? $data : new InternetException("HTTP error: {$data->getCode()}: {$data->getBody()}"));
 		} else {
 			$this->setResult(new Exception($error ?? "Unknown error"));
 		}
