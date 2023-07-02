@@ -1,0 +1,34 @@
+{
+    "name": "valiant-bedrock/libdiscord",
+    "description": "A small PocketMine-MP library to connect to Discord's webhook integration",
+    "type": "library",
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.20",
+        "pocketmine/pocketmine-mp": "dev-stable"
+    },
+    "scripts": {
+        "analyze": "./vendor/bin/phpstan analyze",
+        "run-cs-fixer": "./vendor/bin/php-cs-fixer fix --diff --ansi"
+    },
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "libDiscord\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "libDiscord\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matthew Jordan",
+            "email": "matthew@valiant.watch"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+# dependency files
+vendor/
+# local development files
+phpstan.neon
+# ide files
+.idea/
+# cache files
+*.cache
