@@ -2,6 +2,7 @@
     "name": "valiant-bedrock/libdiscord",
     "description": "A small PocketMine-MP library to connect to Discord's webhook integration",
     "type": "library",
+    "version": "0.1.0",
     "require": {
         "php": ">=8.2"
     },
