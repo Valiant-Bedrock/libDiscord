@@ -27,7 +27,7 @@ class DiscordChannel {
 
 	protected AsyncPool $asyncPool;
 
-	public function __construct(protected string $webhookId, ?AsyncPool $asyncPool = null) {
+	public function __construct(protected string $webhookId, protected string $username, ?AsyncPool $asyncPool = null) {
 		$this->asyncPool = $asyncPool ?? Server::getInstance()->getAsyncPool();
 	}
 
