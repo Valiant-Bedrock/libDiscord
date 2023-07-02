@@ -40,8 +40,8 @@ class DiscordChannel {
 	 * @param (Closure(Exception): void)|null $onFailure
 	 * @throws JsonException
 	 */
-	public function sendMessage(string $content, ?Closure $onSuccess = null, ?Closure $onFailure = null): void {
-		$this->send(new DiscordMessage($content), $onSuccess, $onFailure);
+	public function sendMessage(string $content, ?Closure $onSuccess = null, ?Closure $onFailure = null, ?string $username = null): void {
+		$this->send(new DiscordMessage($username ?? $this->username, $content), $onSuccess, $onFailure);
 	}
 
 	/**
@@ -49,8 +49,8 @@ class DiscordChannel {
 	 * @param (Closure(Exception): void)|null $onFailure
 	 * @throws JsonException
 	 */
-	public function sendEmbed(RichEmbed $embed, ?Closure $onSuccess = null, ?Closure $onFailure = null): void {
-		$this->send(new DiscordMessage("", embeds: [$embed]), $onSuccess, $onFailure);
+	public function sendEmbed(RichEmbed $embed, ?Closure $onSuccess = null, ?Closure $onFailure = null, ?string $username = null): void {
+		$this->send(new DiscordMessage($username ?? $this->username, content: "", embeds: [$embed]), $onSuccess, $onFailure);
 	}
 
 	/**
