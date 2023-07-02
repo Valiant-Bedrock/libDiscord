@@ -26,11 +26,14 @@ class DiscordMessage implements JsonSerializable {
 	 */
 	public function __construct(
 		public string $content,
-		public string $username = "",
+		public string $username,
 		public bool $tts = false,
 		protected array $embeds = [],
 		protected AllowedMentions $allowedMentions = new AllowedMentions([], [], [], false),
 	) {
+		if (strlen($this->username) <= 0 || strlen($this->username) > 80) {
+			throw new InvalidArgumentException("Discord usernames can only have between 1 and 80 characters");
+		}
 		if (strlen($this->content) > self::MAX_CONTENT_LENGTH) {
 			throw new InvalidArgumentException("Discord messages can only have up to " . self::MAX_CONTENT_LENGTH . " characters");
 		}
