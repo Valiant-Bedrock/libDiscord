@@ -25,8 +25,8 @@ class DiscordMessage implements JsonSerializable {
 	 * @param array<RichEmbed> $embeds
 	 */
 	public function __construct(
-		public string $content,
 		public string $username,
+		public string $content,
 		public bool $tts = false,
 		protected array $embeds = [],
 		protected AllowedMentions $allowedMentions = new AllowedMentions([], [], [], false),
